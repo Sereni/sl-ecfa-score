@@ -56,19 +56,46 @@ local function EcfaScore()
   end
 end
 
+-- Names the formula used to calculate score 
+local function ScoreLabel()
+  if SL.Global.GameMode == "ECFA" then
+    if IsStaminaFA() then
+      return "Stamina FA+"
+    else
+      return "FA+"
+    end    
+  else
+    if IsStaminaFA() then
+      return "Stamina FA"
+    else
+      return "FA"
+    end    
+  end
+end
 
+-- Display the score
 t = Def.ActorFrame {
   InitCommand=function(self)
-    self:xy(20, _screen.cy - 70)
+    self:xy(25, _screen.cy - 70)
     if pn == PLAYER_1 then
-      self:x(-20)
+      self:x(-25)
 	end
   end,
   LoadFont("_wendy small")..{
 	InitCommand=function(self)
-	  self:zoom( 0.4 )
-      self:settext(EcfaScore())
-    end,
+	  self:zoom(0.4)
+          self:settext(EcfaScore())
+        end,
   }
+}
+
+-- Add a label to tell the player which formula was used
+t[#t+1] = Def.BitmapText{
+            Font="_miso",
+            InitCommand=function(self)
+              self:settext(ScoreLabel())
+              self:y(-20)
+              self:zoom(0.7)
+            end,
 }
 return t
