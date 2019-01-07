@@ -24,11 +24,35 @@ local function GetFaPlusScore()
   return string.format("%0.2f", percent_blues)
 end
 
+local function GetStaminaFaScore()
+  local fantastics = stats:GetTapNoteScores("TapNoteScore_W1")
+  return fantastics
+end
+
+local function GetStaminaFaPlusScore()
+  local blue = stats:GetTapNoteScores("TapNoteScore_W1")
+  local white = stats:GetTapNoteScores("TapNoteScore_W2")
+  return blue + (0.5 * white)
+end
+
+local function IsStaminaFA()
+  return GAMESTATE:GetCurrentSong():GetGroupName() == "ECFA 2019 - Stamina FA"
+end
+
 local function EcfaScore()
   if SL.Global.GameMode == "ECFA" then
-    return GetFaPlusScore()
+    -- Check if Stamina FA
+    if IsStaminaFA() then
+      return GetStaminaFaPlusScore()
+    else
+      return GetFaPlusScore()
+    end    
   else
-    return GetFaScore()
+    if IsStaminaFA() then
+      return GetStaminaFaScore()
+    else
+      return GetFaScore()
+    end    
   end
 end
 
