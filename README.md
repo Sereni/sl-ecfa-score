@@ -37,3 +37,8 @@ default.lua is invalid. Possible reasons:
 **Letter and stars do not show anymore**
 
 You may have deleted this line: `LoadActor("./PerPlayer/LetterGrade.lua", player),`. Paste it back.
+
+## Thanks
+To The Right Honourable Sir Darren Smith of Uxbridge for saying that it would be nice to have score calculated for you and put on the screen.
+
+To CrowTheShaman for figuring out Stamina FA.
