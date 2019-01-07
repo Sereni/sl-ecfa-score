@@ -13,9 +13,15 @@ local function GetFaScore()
 end
 
 local function GetFaPlusScore()
+  -- FA+ score is a % of blue fantastics.
   local blue = stats:GetTapNoteScores("TapNoteScore_W1")
   local white = stats:GetTapNoteScores("TapNoteScore_W2")
-  return blue + 0.5 * white
+  local excellent = stats:GetTapNoteScores("TapNoteScore_W3")
+  local great = stats:GetTapNoteScores("TapNoteScore_W4")
+  local decent = stats:GetTapNoteScores("TapNoteScore_W5")
+  local miss = stats:GetTapNoteScores("Miss")
+  local percent_blues = 100 * blue / (blue + white + excellent + great + decent + miss)
+  return string.format("%0.2f", percent_blues)
 end
 
 local function EcfaScore()
