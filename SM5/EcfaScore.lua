@@ -39,20 +39,32 @@ local function IsStaminaFA()
   return GAMESTATE:GetCurrentSong():GetGroupName() == "ECFA 2019 - Stamina FA"
 end
 
+local function IsEcfaPack()
+  return 
+    GAMESTATE:GetCurrentSong():GetGroupName() == "ECFA 2019 - Lower" or
+    GAMESTATE:GetCurrentSong():GetGroupName() == "ECFA 2019 - Middle" or
+    GAMESTATE:GetCurrentSong():GetGroupName() == "ECFA 2019 - Upper"
+end
+
 local function EcfaScore()
   if SL.Global.GameMode == "ECFA" then
     -- Check if Stamina FA
     if IsStaminaFA() then
       return GetStaminaFaPlusScore()
-    else
+    elseif IsEcfaPack() then
       return GetFaPlusScore()
-    end    
+    else
+      return ""
+    end
+  -- Regular FA mode
   else
     if IsStaminaFA() then
       return GetStaminaFaScore()
-    else
+    elseif IsEcfaPack() then
       return GetFaScore()
-    end    
+    else
+      return ""
+    end
   end
 end
 
@@ -61,15 +73,20 @@ local function ScoreLabel()
   if SL.Global.GameMode == "ECFA" then
     if IsStaminaFA() then
       return "Stamina FA+"
-    else
+    elseif IsEcfaPack() then
       return "FA+"
-    end    
+    else
+      return ""
+    end
+  -- Regular FA mode
   else
     if IsStaminaFA() then
       return "Stamina FA"
-    else
+    elseif IsEcfaPack() then
       return "FA"
-    end    
+    else
+      return ""
+    end
   end
 end
 
