@@ -20,6 +20,10 @@ local function GetFaPlusScore()
   local great = stats:GetTapNoteScores("TapNoteScore_W4")
   local decent = stats:GetTapNoteScores("TapNoteScore_W5")
   local miss = stats:GetTapNoteScores("Miss")
+  local all = (blue + white + excellent + great + decent + miss)
+  -- Congratulate the effort required to reach this corner case.
+  if all == 0 then return "=^_^=" end
+
   local percent_blues = 100 * blue / (blue + white + excellent + great + decent + miss)
   return string.format("%0.2f", percent_blues)
 end
