@@ -50,49 +50,30 @@ local function IsEcfaPack()
     GAMESTATE:GetCurrentSong():GetGroupName() == "ECFA 2019 - Upper"
 end
 
-local function EcfaScore()
+-- Returns the score and name of the function used to calculate it
+local function GetScoreAndLabel()
   if SL.Global.GameMode == "ECFA" then
-    -- Check if Stamina FA
     if IsStaminaFA() then
-      return GetStaminaFaPlusScore()
+      return GetStaminaFaPlusScore(), "Stamina FA+"
     elseif IsEcfaPack() then
-      return GetFaPlusScore()
+      return GetFaPlusScore(), "FA+"
     else
-      return ""
+      return "", ""
     end
   -- Regular FA mode
   else
     if IsStaminaFA() then
-      return GetStaminaFaScore()
+      return GetStaminaFaScore(), "Stamina FA"
     elseif IsEcfaPack() then
-      return GetFaScore()
+      return GetFaScore(), "FA"
     else
-      return ""
+      return "", ""
     end
   end
 end
 
--- Names the formula used to calculate score 
-local function ScoreLabel()
-  if SL.Global.GameMode == "ECFA" then
-    if IsStaminaFA() then
-      return "Stamina FA+"
-    elseif IsEcfaPack() then
-      return "FA+"
-    else
-      return ""
-    end
-  -- Regular FA mode
-  else
-    if IsStaminaFA() then
-      return "Stamina FA"
-    elseif IsEcfaPack() then
-      return "FA"
-    else
-      return ""
-    end
-  end
-end
+
+local EcfaScore, FormulaLabel = GetScoreAndLabel()
 
 -- Display the score
 t = Def.ActorFrame {
@@ -105,7 +86,7 @@ t = Def.ActorFrame {
   LoadFont("_wendy small")..{
 	InitCommand=function(self)
 	  self:zoom(0.4)
-          self:settext(EcfaScore())
+          self:settext(EcfaScore)
         end,
   }
 }
@@ -114,7 +95,7 @@ t = Def.ActorFrame {
 t[#t+1] = Def.BitmapText{
             Font="_miso",
             InitCommand=function(self)
-              self:settext(ScoreLabel())
+              self:settext(FormulaLabel)
               self:y(-20)
               self:zoom(0.7)
             end,
