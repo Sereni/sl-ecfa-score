@@ -25,6 +25,15 @@ Paste the this line after it and save the file:
 
 You can use the example SM5/default.lua from this repository to find where you need to make the change.
 
+### OpenITG/Stock
+Download the Stock/EcfaScore.lua file and copy it into this folder:
+
+`your-additional-folder/Themes⁩/⁨your-theme-name/Scripts⁩/`
+
+Download the 'Stock/ScreenEvaluation overlay.xml' file. Make a backup of this file, then replace it with the one you downloaded:
+
+`your-additional-folder/Themes/your-theme-name/BGAnimations/ScreenEvaluation overlay.xml`
+
 ## Troubleshooting
 
 **My entire score page is gone!**
@@ -37,6 +46,16 @@ default.lua is invalid. Possible reasons:
 **Letter and stars do not show anymore**
 
 You may have deleted this line: `LoadActor("./PerPlayer/LetterGrade.lua", player),`. Paste it back.
+
+**Nothing breaks, but nothing extra displays either**
+
+The script relies on some pretty specific names of various things.
+- For Stamina FA/FA+, make sure your songs are in a folder called "ECFA 2019 - Stamina FA".
+- For non-stamina FA/FA+, make sure your songs are in a folder called one of these exactly:
+  - "ECFA 2019 - Lower"
+  - "ECFA 2019 - Middle"
+  - "ECFA 2019 - Upper"
+- For FA+ or Stamina FA+ on stock, make sure your theme name includes "ECFA".
 
 ## Thanks
 To The Right Honourable Sir Darren Smith of Uxbridge for saying that it would be nice to have score calculated for you and put on the screen.
