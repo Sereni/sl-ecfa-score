@@ -61,3 +61,5 @@ The script relies on some pretty specific names of various things.
 To The Right Honourable Sir Darren Smith of Uxbridge for saying that it would be nice to have score calculated for you and put on the screen.
 
 To CrowTheShaman for figuring out Stamina FA.
+
+To Rich+Sujeet for the stock version.
