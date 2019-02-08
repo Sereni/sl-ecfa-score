@@ -27,7 +27,12 @@ function GetFaPlusScore(pn)
   -- Congratulate the effort required to reach this corner case.
   if all == 0 then return "=^_^=" end
 
-  local percent_blues = 100 * blue / (blue + white + excellent + great + decent + miss)
+  -- Truncate (not round) percentage to 2 decimal places:
+  -- blue / all = 0.69697
+  -- 0.69697 * 10000 = 6969.7
+  -- math.floor(6969.7) = 6969.0
+  -- 6969.0 / 100 = 69.69
+  local percent_blues = math.floor((blue / all) * 10000) / 100
   return string.format("%0.2f", percent_blues)
 end
 
