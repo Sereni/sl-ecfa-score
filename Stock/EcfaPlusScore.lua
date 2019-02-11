@@ -36,12 +36,6 @@ function GetFaPlusScore(pn)
   return string.format("%0.2f", percent_blues)
 end
 
-function GetStaminaFaPlusScore(pn)
-  local blue = SCREENMAN:GetTopScreen():GetChild('MarvelousNumberP' .. pn+1):GetText()
-  local white = SCREENMAN:GetTopScreen():GetChild('PerfectNumberP' .. pn+1):GetText()
-  return blue + (0.5 * white)
-end
-
 function IsStaminaFA()
   local t = {}
   local i = 1
@@ -68,7 +62,7 @@ end
 -- Returns the score and name of the function used to calculate it
 function GetScoreAndLabel(pn)
   if IsStaminaFA() then
-    return GetStaminaFaPlusScore(pn), "Stamina FA+"
+    return GetFaPlusScore(pn), "Stamina FA+"
   elseif IsEcfaPack() then
     return GetFaPlusScore(pn), "FA+"
   else

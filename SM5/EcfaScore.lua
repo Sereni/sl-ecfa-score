@@ -38,12 +38,6 @@ local function GetStaminaFaScore()
   return fantastics
 end
 
-local function GetStaminaFaPlusScore()
-  local blue = stats:GetTapNoteScores("TapNoteScore_W1")
-  local white = stats:GetTapNoteScores("TapNoteScore_W2")
-  return blue + (0.5 * white)
-end
-
 local function IsStaminaFA()
   return GAMESTATE:GetCurrentSong():GetGroupName() == "ECFA 2019 - Stamina FA"
 end
@@ -59,7 +53,8 @@ end
 local function GetScoreAndLabel()
   if SL.Global.GameMode == "ECFA" then
     if IsStaminaFA() then
-      return GetStaminaFaPlusScore(), "Stamina FA+"
+      -- Stamina FA+ uses the same formula as FA+ from Round 2.
+      return GetFaPlusScore(), "Stamina FA+"
     elseif IsEcfaPack() then
       return GetFaPlusScore(), "FA+"
     else
